@@ -12,6 +12,7 @@ RUN echo "https://mirrors.tuna.tsinghua.edu.cn/alpine/v$(cat /etc/alpine-release
     apk upgrade && \
     apk add --no-cache --update ${RUNTIME_PACKAGES} ${BUILD_PACKAGES} && \
     cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
+    echo "Asia/Shanghai" >  /etc/timezone && \
     pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple && \
     pip --no-cache-dir install -U pip && \
     pip --no-cache-dir install \
@@ -20,7 +21,7 @@ RUN echo "https://mirrors.tuna.tsinghua.edu.cn/alpine/v$(cat /etc/alpine-release
       pika \
       pycryptodome \
       git+https://github.com/scrapy/scrapyd.git && \
-    apk del ${BUILD_PACKAGES} && \
+    apk del tzdata ${BUILD_PACKAGES} && \
     rm -rf /root/.cache
 
 COPY ./scrapyd.conf /etc/scrapyd/

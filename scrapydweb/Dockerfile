@@ -8,10 +8,11 @@ RUN echo "https://mirrors.tuna.tsinghua.edu.cn/alpine/v$(cat /etc/alpine-release
     apk upgrade && \
     apk add --no-cache --update tzdata && \
     cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
+    echo "Asia/Shanghai" >  /etc/timezone && \
     pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple && \
     pip --no-cache-dir install -U pip && \
     pip --no-cache-dir install scrapydweb && \
-    apk del ${BUILD_PACKAGES} && \
+    apk del tzdata ${BUILD_PACKAGES} && \
     rm -rf /root/.cache
 
 VOLUME ${SCRAPYDWEB_HOME}
