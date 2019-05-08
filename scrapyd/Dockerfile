@@ -21,6 +21,7 @@ RUN echo "https://mirrors.tuna.tsinghua.edu.cn/alpine/v$(cat /etc/alpine-release
       pika \
       pycryptodome \
       beautifulsoup4 \
+      lxml \
       git+https://github.com/scrapy/scrapyd.git && \
     apk del tzdata ${BUILD_PACKAGES} && \
     rm -rf /root/.cache
