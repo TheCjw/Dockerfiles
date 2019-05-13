@@ -7,8 +7,6 @@ RUN echo "https://mirrors.tuna.tsinghua.edu.cn/alpine/v$(cat /etc/alpine-release
     apk update && \
     apk upgrade && \
     apk add --no-cache --update git && \
-    cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
-    echo "Asia/Shanghai" >  /etc/timezone && \
     pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple && \
     pip --no-cache-dir install -U pip && \
     pip --no-cache-dir install git+https://github.com/my8100/scrapydweb.git && \
